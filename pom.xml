@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>mpcle</artifactId>
+        <groupId>mx.gob.imss.dpes</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>mx.gob.imss.dpes</groupId>
+    <artifactId>bitacoraFront</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+
+    <name>bitacoraFront</name>
+
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>mx.gob.imss.dpes</groupId>
+            <artifactId>baseFront</artifactId>
+            <version>1.0</version>
+            <classifier>classes</classifier>
+        </dependency>
+    </dependencies>
+    
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <excludes>
+                            <exclude>prod/**</exclude>
+                        </excludes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <excludes>
+                            <exclude>prod/**</exclude>
+                            <exclude>META-INF/**</exclude>
+                        </excludes>
+                    </resource>
+                    <resource>
+                        <directory>src/main/resources/prod</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+</project>
